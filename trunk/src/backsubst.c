@@ -10,7 +10,7 @@ int  backsubst(Matrix *x, Matrix *mat, Matrix *b) {
 				 */
 
 				/* To ponizej jest przepisaniem b do x. Nalezy to poprawic! */
-
+				int pom;
 				int i;
 				for (i =0; i < x->r; i++) {
 								x->data[i][0] = b->data[i][0];
