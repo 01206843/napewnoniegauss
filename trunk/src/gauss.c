@@ -12,15 +12,24 @@ int eliminate(Matrix *mat, Matrix *b) {
     if (mat->r != mat->c || mat->r != b->r) return 1; 
  
     for (k = 0; k < n - 1; k++) {
+        int max_row = k;
+        for (i = k + 1; i < n; i++) {
+            if (fabs(mat->data[i][k]) > fabs(mat->data[max_row][k])) max_row = i;
+        }
  
         // e +-= 0, m.osobliwa
         if (fabs(mat->data[k][k]) < 1e-12) return 1; 
-        double s=0;
-        for(j = i+1;j < pom;j++)
-        {
-            s+=mat->data[i][j] * x->data[j][0];
+        if (fabs(mat->data[max_row][k]) < 1e-12) return 1; 
+ 
+        if (max_row != k) {
+            double *temp = mat->data[k];
+            mat->data[k] = mat->data[max_row];
+            mat->data[max_row] = temp;
+ 
+            temp = b->data[k];
+            b->data[k] = b->data[max_row];
+            b->data[max_row] = temp;
         }
-
         // gaus
         for (i = k + 1; i < n; i++) {
             double factor = mat->data[i][k] / mat->data[k][k];
