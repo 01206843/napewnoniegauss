@@ -13,6 +13,7 @@ int  backsubst(Matrix *x, Matrix *mat, Matrix *b)
 	{
 		return 2; // zwracanie wartosci 2 jesli sa nieprawidlowe rozmiary
 	}
+
 	for(int i = pom-1 ; i>=0;i--)
 	{
 		if(mat->data[i][i] ==0)
@@ -20,6 +21,7 @@ int  backsubst(Matrix *x, Matrix *mat, Matrix *b)
 			return 1; //zwracanie 1 jesli ma miejsce dzielenie przez 0
 		}
 	}
+	double s=0;
 	return 0;
 }
 
