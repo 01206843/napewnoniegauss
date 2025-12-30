@@ -8,14 +8,19 @@
 int eliminate(Matrix *mat, Matrix *b) {
     int n = mat->r;
     int i, j, k;
- 
+
     if (mat->r != mat->c || mat->r != b->r) return 1; 
  
     for (k = 0; k < n - 1; k++) {
  
         // e +-= 0, m.osobliwa
         if (fabs(mat->data[k][k]) < 1e-12) return 1; 
- 
+        double s=0;
+        for(j = i+1;j < pom;j++)
+        {
+            s+=mat->data[i][j] * x->data[j][0];
+        }
+
         // gaus
         for (i = k + 1; i < n; i++) {
             double factor = mat->data[i][k] / mat->data[k][k];
