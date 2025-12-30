@@ -14,14 +14,20 @@ int  backsubst(Matrix *x, Matrix *mat, Matrix *b)
 		return 2; // zwracanie wartosci 2 jesli sa nieprawidlowe rozmiary
 	}
 
-	for(int i = pom-1 ; i>=0;i--)
+	for(i = pom-1 ; i>=0;i--)
 	{
 		if(mat->data[i][i] ==0)
 		{
 			return 1; //zwracanie 1 jesli ma miejsce dzielenie przez 0
 		}
+	
+		double s=0;
+		for(j = i+1;j < pom;j++)
+		{
+			s+=mat->data[i][j] * x->data[j][0];
+		}
+		x-> data[i][0] = (b->data[i][0] -s) / (mat->data[i][i]);
 	}
-	double s=0;
 	return 0;
 }
 
