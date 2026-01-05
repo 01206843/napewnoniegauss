@@ -8,7 +8,7 @@
 int eliminate(Matrix *mat, Matrix *b) {
     int n = mat->r;
     int i, j, k;
- 
+
     if (mat->r != mat->c || mat->r != b->r) return 1; 
  
     for (k = 0; k < n - 1; k++) {
@@ -18,6 +18,7 @@ int eliminate(Matrix *mat, Matrix *b) {
         }
  
         // e +-= 0, m.osobliwa
+        if (fabs(mat->data[k][k]) < 1e-12) return 1; 
         if (fabs(mat->data[max_row][k]) < 1e-12) return 1; 
  
         if (max_row != k) {
@@ -29,7 +30,6 @@ int eliminate(Matrix *mat, Matrix *b) {
             b->data[k] = b->data[max_row];
             b->data[max_row] = temp;
         }
- 
         // gaus
         for (i = k + 1; i < n; i++) {
             double factor = mat->data[i][k] / mat->data[k][k];
