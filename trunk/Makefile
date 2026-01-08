@@ -19,3 +19,7 @@ test: all
 	@echo "TEST 4: Macierz gornotrojkatna"
 	bin/gauss dane/test4_A dane/test4_b
 	@echo "----------------------------------------"
+	
+	@echo "TEST 5: Stabilność (małe liczby)"
+	bin/gauss dane/test5_A dane/test5_B
+	@echo "----------------------------------------"
